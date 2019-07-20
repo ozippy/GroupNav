@@ -5,8 +5,8 @@ import INavItem from './INavItem';
 
 
 
-const testData: INavItem[] = [{ title: "Google", entity: "sanitarium.com.au", navGroup: "Do", linkUrl: "https://google.com" },
-{ title: "Google", entity: "sanitarium.com.au", navGroup: "Do", linkUrl: "https://google.com" }];
+const testData: INavItem[] = [{ id: 1, title: "Google", entity: "sanitarium.com.au", navGroup: "Do", linkUrl: "https://google.com" },
+{ id: 2, title: "Microsoft", entity: "sanitarium.com.au", navGroup: "Do", linkUrl: "https://microsoft.com" }];
 
 
 export default function useNavState(selectedEntity: string) {
@@ -14,7 +14,7 @@ export default function useNavState(selectedEntity: string) {
     //set a default entity
     const [entity, setEntity] = React.useState(selectedEntity);
     //init state to null for nav items
-    const [navItems, setNavItems] = React.useState<INavItem[] | null>(null);
+    const [navItems, setNavItems] = React.useState<INavItem[]>([]);
 
 
     //Load the data
