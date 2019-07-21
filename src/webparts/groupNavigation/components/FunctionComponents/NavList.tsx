@@ -3,12 +3,12 @@ import * as ReactDOM from 'react-dom';
 import styles from '../GroupNavigation.module.scss';
 import LinkElement from './LinkElement';
 import EntitySelector from './EntitySelector';
-import INavItem from './INavItem';
+import ISPNavItem from './INavItem';
 import useNavState from './NavState';
 import { Nav, INavLinkGroup } from 'office-ui-fabric-react/lib/Nav';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
-
-const initialEntity = "sanitarium.com.au";
+const initialEntity = "companyb.com";
 
 export default function NavList() {
 
@@ -18,13 +18,8 @@ export default function NavList() {
     <div className={styles.groupNavigation}>
       <p>List</p>
       <EntitySelector />
-      {isLoading ? <p>Loading</p> : <p>Not loading</p>}
-      {console.log(navItems)}
-      <ul>
-        {navItems.map((navItem: INavItem) => {
-          return <LinkElement key={navItem.id} navItem={navItem} />
-        })}
-      </ul>
+      {isLoading ? <Spinner size={SpinnerSize.medium} /> : <p>Not loading</p>}
+
       <div>
         <Nav
           onRenderGroupHeader={_onRenderGroupHeader}

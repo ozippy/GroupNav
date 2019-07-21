@@ -11,14 +11,30 @@ import * as strings from 'GroupNavigationWebPartStrings';
 import GroupNavigation from './components/GroupNavigation';
 import { IGroupNavigationProps } from './components/IGroupNavigationProps';
 
+import { sp } from "@pnp/sp";
+
 export interface IGroupNavigationWebPartProps {
   description: string;
 }
 
+
+
+
 export default class GroupNavigationWebPart extends BaseClientSideWebPart<IGroupNavigationWebPartProps> {
 
+  //Add PNP JS
+  public onInit(): Promise<void> {
+
+    return super.onInit().then(_ => {
+      sp.setup({
+        spfxContext: this.context
+      });
+    });
+  }
+
+
   public render(): void {
-    const element: React.ReactElement<IGroupNavigationProps > = React.createElement(
+    const element: React.ReactElement<IGroupNavigationProps> = React.createElement(
       GroupNavigation,
       {
         description: this.properties.description
