@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Pages",
+        "links": [
+            {
+                "name": "Activity",
+                "url": "http://msn.com",
+                "key": "key1",
+                "target": "_blank"
+            },
+            {
+                "name": "News",
+                "url": "http://msn.com",
+                "key": "key2",
+                "target": "_blank"
+            }
+        ]
+    }
+]

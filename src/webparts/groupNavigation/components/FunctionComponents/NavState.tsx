@@ -20,7 +20,7 @@ export default function useNavState(selectedEntity: string) {
     //Load the data and filter out items for only the selectede entity
     const loadNavItems = () => {
         setLoading(true);
-        sp.web.lists.getByTitle("NavigationList").items.select("Id", "Title", "Entity", "NavigationGroup", "LinkURL", "Target").get().then((items: ISPNavItem[]) => {
+        sp.web.lists.getByTitle("NavigationList").items.select("Id", "Title", "Entity", "NavigationGroup", "LinkURL", "Target").orderBy("NavigationGroup").get().then((items: ISPNavItem[]) => {
 
             let filteredItems = items.filter(item => {
                 let includeFlag: boolean = false;
@@ -28,11 +28,13 @@ export default function useNavState(selectedEntity: string) {
                 if (includeFlag) return item;
             });
 
+            //console.log(JSON.stringify(filteredItems));
+
             filteredItems.forEach(element => {
                 console.log(element.Id);
                 console.log(element.Title);
                 console.log(element.Entity);
-                console.log(element.NavigationGroup[0].Label);
+                console.log(element.NavigationGroup);
                 console.log(element.LinkURL);
             });
             //Populate the navItems from the SharePoint list
