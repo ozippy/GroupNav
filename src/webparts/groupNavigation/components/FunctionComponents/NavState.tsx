@@ -4,6 +4,7 @@ import * as React from 'react';
 import ISPNavItem, { IGroupLink, INavGroup } from './INavItem';
 
 export default function useNavState(initialEntity: string) {
+    //Flag to say if the data is loading
     const [isLoading, setLoading] = React.useState(false);
     //set a default entity
     const [selectedEntity, setSelectedEntity] = React.useState(initialEntity);
