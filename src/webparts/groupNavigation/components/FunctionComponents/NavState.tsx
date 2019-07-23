@@ -1,10 +1,7 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import styles from '../GroupNavigation.module.scss';
-import ISPNavItem from './INavItem';
-import { sp } from "@pnp/sp";
 import { find } from '@microsoft/sp-lodash-subset';
-import { INavGroup, IGroupLink } from './INavItem';
+import { sp } from "@pnp/sp";
+import * as React from 'react';
+import ISPNavItem, { IGroupLink, INavGroup } from './INavItem';
 
 export default function useNavState(initialEntity: string) {
     const [isLoading, setLoading] = React.useState(false);

@@ -1,20 +1,22 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import styles from '../GroupNavigation.module.scss';
-import LinkElement from './LinkElement';
-import { EntitySelector } from './EntitySelector';
-import ISPNavItem from './INavItem';
-import useNavState from './NavState';
-import { Nav, INavLinkGroup } from 'office-ui-fabric-react/lib/Nav';
+import { INavLinkGroup, Nav } from 'office-ui-fabric-react/lib/Nav';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { INavGroup, IGroupLink } from './INavItem';
+import * as React from 'react';
+import styles from '../GroupNavigation.module.scss';
+import { EntitySelector } from './EntitySelector';
+import useNavState from './NavState';
 
 
 const initialEntity = "companya.com";
 
-export default function NavList() {
+//This is the main component which will lis the navigation
+export const NavList = () => {
 
+  //Get the state data from the custom hook
   const { navItemsGroup, isLoading, selectedEntity, setSelectedEntity } = useNavState(initialEntity);
+
+  const _onRenderGroupHeader = (group: INavLinkGroup): JSX.Element => {
+    return <h3>{group.name}</h3>;
+  };
 
   return (
     <div className={styles.groupNavigation}>
@@ -33,8 +35,4 @@ export default function NavList() {
     </div>
   );
 
-}
-
-function _onRenderGroupHeader(group: INavLinkGroup): JSX.Element {
-  return <h3>{group.name}</h3>;
-}
+};
