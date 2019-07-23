@@ -6,14 +6,10 @@ import { sp } from "@pnp/sp";
 import { find } from '@microsoft/sp-lodash-subset';
 import { INavGroup, IGroupLink } from './INavItem';
 
-// const testData: INavItem[] = [{ id: 1, title: "Google", entity: "sanitarium.com.au", navGroup: "Do", linkUrl: "https://google.com", target: '_blank' },
-// { id: 2, title: "Microsoft", entity: "sanitarium.com.au", navGroup: "Discover", linkUrl: "https://microsoft.com", target: '_blank' }];
-
-
-export default function useNavState(selectedEntity: string) {
+export default function useNavState(initialEntity: string) {
     const [isLoading, setLoading] = React.useState(false);
     //set a default entity
-    const [entity, setEntity] = React.useState(selectedEntity);
+    const [selectedEntity, setSelectedEntity] = React.useState(initialEntity);
     //init state to empty array for nav items
     const [navItemsGroup, setNavItemsGroup] = React.useState<INavGroup[]>([]);
 
@@ -49,16 +45,7 @@ export default function useNavState(selectedEntity: string) {
                         groupItems.push(groupItem);
                     }
                 }
-                // console.log(JSON.stringify(groupItems));
             }
-
-            // filteredItems.forEach(element => {
-            //     console.log(element.Id);
-            //     console.log(element.Title);
-            //     console.log(element.Entity);
-            //     console.log(element.NavigationGroup);
-            //     console.log(element.LinkURL);
-            // });
             //Populate the navItems from the SharePoint list
             setNavItemsGroup(groupItems);
             setLoading(false);
@@ -70,5 +57,5 @@ export default function useNavState(selectedEntity: string) {
         loadNavItems();
     }, [selectedEntity]);
 
-    return { navItemsGroup, isLoading };
+    return { navItemsGroup, isLoading, selectedEntity, setSelectedEntity };
 }
